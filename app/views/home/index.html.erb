@@ -1,10 +1,29 @@
-
-<h1>Welcome, this is the home page</h1>  
-  
+<div style="text-align:center; margin: 20px;">
+  <h1>Welcome, this is the home page</h1>  
+</div>
+<div style="margin: 0 auto;">  
+  <div>
+    <section class="products">
+      <% @products.each do |product| %>
+        <a href="<%= url_for(product) %>">
+          <div class="product-card shadow">
+            <div class="product-image">
+              <%= return_img(product.description) %>
+            </div>
+            <div class="product-info">
+              <h5><%= product.title %></h5>
+              <h6><%= number_to_currency(product.value, unit: "R$ ", separator: ",", delimiter: "") %></h6>
+            </div>
+          </div>
+        </a>
+      <% end %>
+    </section>
+  </div>
+</div>
 <button type="button" 
-        class="btn btn-sm btn-danger" 
-        data-bs-toggle="popover" 
-        title="Popover title" 
-        data-bs-content="Amazing content, right ?">
-        Click to toggle popover
+class="btn btn-sm btn-danger" 
+data-bs-toggle="popover" 
+title="Popover title" 
+data-bs-content="Amazing content, right ?">
+Click to toggle popover
 </button>  
