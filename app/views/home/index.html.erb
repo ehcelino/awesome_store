@@ -6,7 +6,7 @@
     <section class="products">
       <% @products.each do |product| %>
         <a href="<%= url_for(product) %>">
-          <div class="product-card shadow">
+          <div id="productCard" class="product-card" onmouseover="this.classList.add('wiggle');" onmouseout="this.classList.remove('wiggle');">
             <div class="product-image">
               <%= return_img(product.description) %>
             </div>
@@ -27,3 +27,7 @@ title="Popover title"
 data-bs-content="Amazing content, right ?">
 Click to toggle popover
 </button>  
+
+<% content_for :javascript do %>
+
+<% end %>

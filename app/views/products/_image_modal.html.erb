@@ -1,0 +1,15 @@
+<div id="image-modal" class="modal">
+  <div class="modal-content">
+  <span class="close-modal">&times;</span>
+    <img id="modal-image" src="#">
+  </div>
+</div>
+
+<script>
+const closeModal = document.querySelector(".close-modal");
+const imageModal = document.querySelector("#image-modal");
+
+closeModal.addEventListener("click", function () {
+  imageModal.style.display = "none";
+});
+</script>

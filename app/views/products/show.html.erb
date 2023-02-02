@@ -1,13 +1,51 @@
 <div class="container">
-  <div class="m-lg-3">
-    <div class="border shadow" style="background-color:white;">
-      <div class="m-lg-3">
-        <H3><%= @product.title %></H3>
-        <%= @product.description %>
-        <div class="show-value">
-          <%= @product.value %>
+  <div class="row border shadow white-bkg m-lg-3">
+    <div class="col-sm-8">
+      <div style="text-align:center;">
+        <div class="m-lg-3">
+
+          <div id="display-area">
+            <img id="displayed-image">
+          </div>
+                    <% if @product.images %>
+            <div class="d-inline-flex flex-wrap" id="images">
+              <% @product.images.each do |image| %>
+                <div>
+                  <%= image_tag(image, class:"resize-sml img-cursor", onclick: "displayImage(this);") %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+
+          <%= @product.description %>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div>
+        <div class="m-lg-3">
+          <H1><%= @product.title %></H1>
+          <div class="show-value">
+            <%= number_to_currency(@product.value, unit: "R$ ", separator: ",", delimiter: "") %>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<%= javascript_tag do %>
+window.addEventListener("load", function() {
+  const firstImage = document.querySelector("#images img");
+  const displayedImage = document.querySelector("#displayed-image");
+  displayedImage.src = firstImage.src;
+});
+
+
+
+function displayImage(image) {
+  const displayedImage = document.querySelector("#displayed-image");
+  displayedImage.src = image.src;
+}
+<% end %>

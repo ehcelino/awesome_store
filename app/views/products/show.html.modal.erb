@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row border shadow white-bkg m-lg-3">
+    <div class="col-sm-8">
+      <div>
+        <div class="m-lg-3">
+
+          <div id="image-modal" class="modal">
+            <span class="close-modal">&times;</span>
+            <img id="modal-image" class="modal-content">
+          </div>
+
+          <%= @product.description %>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div>
+        <div class="m-lg-3">
+          <H1><%= @product.title %></H1>
+          <div class="show-value">
+            <%= number_to_currency(@product.value, unit: "R$ ", separator: ",", delimiter: "") %>
+          </div>
+          <% if @product.images %>
+            <div class="d-inline-flex flex-wrap">
+              <% @product.images.each do |image| %>
+                <div>
+                  <%= link_to image_tag(image, class:"resize-sml"), "#", class: "open-modal", onclick: "openModal(event);" %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+const closeModal = document.querySelector(".close-modal");
+const imageModal = document.querySelector("#image-modal");
+
+closeModal.addEventListener("click", function () {
+  imageModal.style.display = "none";
+});
+
+
+function openModal(event) {
+  event.preventDefault();
+  const link = event.target.closest("a");
+  const modalImage = document.querySelector("#modal-image");
+  modalImage.src = link.querySelector("img").src;
+  document.querySelector("#image-modal").style.display = "block";
+}
+
+</script>

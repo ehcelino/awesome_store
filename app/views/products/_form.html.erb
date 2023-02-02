@@ -1,46 +1,52 @@
 <div class="container">
-  <% flash.each do |key, value| %>
-    <div id="notice" class="alert margins alert-<%= key %>"><%= value %></div>
-  <% end %>
-  <div class="m-lg-3">
-    <%= form_with model: product, html: { id: 'product-form' } do |f| %>
-      <div class="mb-3">
-        <%= f.label 'Produto', class: "form-label" %>
-        <%= f.text_field :title, placeholder: 'Nome do produto', class: "form-control" %>
-      </div>
-      <div class="mb-3">
-        <%= f.label 'Descrição e imagens', class: "form-label" %>
-        <%= f.rich_text_area :description %>
-      </div>
-      <div class="mb-3">
-        <%= f.label 'Palavras-chave (somente minúsculas)', class: "form-label" %>
-        <%= f.text_field :keywords, placeholder: 'Palavras-chave', class: "form-control" %>
-      </div>
-      <div class="mb-3 row">
-        <%= f.label 'Valor', class: "col-sm-4 col-form-label" %>
-        <div class="col-sm-8">
-          <%= f.number_field :value, min: 0, step: 0.01, class: "form-control form-number" %>
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <%= f.label 'Valor em promoção', class: "col-sm-4 col-form-label" %>
-        <div class="col-sm-8">
-          <%= f.number_field :sale_price, min: 0, step: 0.01, class: "form-control form-number" %>
-        </div>
-      </div>
-      <div class="mb-3">
-        <%= f.label 'Em promoção', class: "form-label" %>
-        <%= f.check_box :sale, class: "form-check-input" %>
-      </div>
-      <div class="mb-3 row">
-        <%= f.label 'Quantidade em estoque', class: "col-sm-4 col-form-label" %>
-        <div class="col-sm-8">
-          <%= f.number_field :stock, class: "form-control form-number" %>
-        </div>
-      </div>
-      <div class="mb-3">
-        <%= f.submit "Enviar", class: "btn btn-primary mb-3" %>
-      </div>
+  <div class="m-lg-3 border shadow white-bkg">
+    <% flash.each do |key, value| %>
+      <div id="notice" class="alert margins alert-<%= key %>"><%= value %></div>
     <% end %>
+    <div class="m-lg-3">
+      <%= form_with model: product, html: { id: 'product-form' } do |f| %>
+        <div class="mb-3">
+          <%= f.label 'Produto', class: "form-label" %>
+          <%= f.text_field :title, placeholder: 'Nome do produto', class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label 'Imagens', class: "form-label" %>
+          <%= f.file_field :images, multiple: true, class: "form-control", options: { type: "file" } %>
+        </div>
+        <div class="mb-3">
+          <%= f.label 'Descrição e imagens', class: "form-label" %>
+          <%= f.rich_text_area :description %>
+        </div>
+        <div class="mb-3">
+          <%= f.label 'Palavras-chave (somente minúsculas)', class: "form-label" %>
+          <%= f.text_field :keywords, placeholder: 'Palavras-chave', class: "form-control" %>
+        </div>
+        <div class="mb-3 row">
+          <%= f.label 'Valor', class: "col-sm-4 col-form-label" %>
+          <div class="col-sm-8">
+            <%= f.number_field :value, min: 0, step: 0.01, class: "form-control form-number" %>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <%= f.label 'Valor em promoção', class: "col-sm-4 col-form-label" %>
+          <div class="col-sm-8">
+            <%= f.number_field :sale_price, min: 0, step: 0.01, class: "form-control form-number" %>
+          </div>
+        </div>
+        <div class="mb-3">
+          <%= f.label 'Em promoção', class: "form-label" %>
+          <%= f.check_box :sale, class: "form-check-input" %>
+        </div>
+        <div class="mb-3 row">
+          <%= f.label 'Quantidade em estoque', class: "col-sm-4 col-form-label" %>
+          <div class="col-sm-8">
+            <%= f.number_field :stock, class: "form-control form-number" %>
+          </div>
+        </div>
+        <div class="mb-3">
+          <%= f.submit "Enviar", class: "btn btn-outline-primary mb-3" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
