@@ -78,6 +78,11 @@ body {
   font-weight: 300;
 }
 
+.product-title {
+  font-family: 'Roboto Condensed';
+  font-weight: 700;
+}
+
 .resize {
   height: auto; 
   width: auto; 
@@ -112,6 +117,32 @@ body {
   display: block;
 }
 
+.clean-button {
+  border: none;
+  background-color: white;
+  padding: 1px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 1px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Para tirar as setas do campo number field */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
 
 /* .greeting {
   font-weight: bold;

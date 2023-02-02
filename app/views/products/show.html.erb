@@ -4,7 +4,7 @@
     <div class="col-sm-8">
       <div>
         <div class="m-lg-3">
-          <div style="text-align:center;">
+          <div style="text-align:center; margin-bottom:20px;">
             <div id="display-area">
               <img id="displayed-image" class="resize-big">
             </div>
@@ -26,10 +26,23 @@
     <div class="col-sm-4">
       <div>
         <div class="m-lg-3">
-          <H1><%= @product.title %></H1>
+          <H1 class="product-title"><%= @product.title %></H1>
           <div class="show-value">
             <%= number_to_currency(@product.value, unit: "R$ ", separator: ",", delimiter: "") %>
           </div>
+          
+          <div style="margin-top:20px;">
+            <%= form_tag product_path(product_id: @product) do %>
+              <div class="form-group" style="margin-bottom:10px;">
+                <%= label_tag :quantity, "Quantidade", class: "form-label" %>
+                <button type="button" onclick="decrementNum()" id="decrease_button" class="clean-button">-</button>
+                <%= number_field_tag :quantity, params[:quantity], value: 1, style: "width: 4em;", id: "number_field" %>
+                <button type="button" onclick="incrementNum()" id="increase_button" class="clean-button">+</button>
+              </div>
+              <div class="actions"><%= submit_tag "Comprar", class: "btn btn-primary mb-3" %></div>
+            <% end %>
+          </div>
+
         </div>
       </div>
     </div>
@@ -49,4 +62,20 @@ function displayImage(image) {
   const displayedImage = document.querySelector("#displayed-image");
   displayedImage.src = image.src;
 }
+
+  function incrementNum() {
+    var numberField = document.getElementById("number_field")
+    let currentValue = parseInt(numberField.value);
+    numberField.value = currentValue + 1;
+  };
+
+  function decrementNum() {
+    var numberField = document.getElementById("number_field")
+    let currentValue = parseInt(numberField.value);
+    if (currentValue > 1) { 
+      numberField.value = currentValue - 1;
+    }
+  };
+
+
 </script>
