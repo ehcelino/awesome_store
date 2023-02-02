@@ -1,0 +1,15 @@
+<div class="notice">
+  <% flash.each do |key, value| %>
+    <div id="notice" class="alert alert-dismissible fade show alert-<%= key %>">
+    <% if key == "danger" %>
+      <i class="bi bi-exclamation-triangle-fill ico-<%= key %>"></i> 
+    <% elsif key == "success" %>
+      <i class="bi bi-check-square-fill ico-<%= key %>"></i> 
+    <% elsif key == "warning" %>
+      <i class="bi bi-cone-striped ico-<%= key %>"></i> 
+    <% end %>
+    <%= value %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+</div>

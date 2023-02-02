@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row border shadow white-bkg m-lg-3">
+    <%= render partial: "alert" %>
     <div class="col-sm-8">
       <div style="text-align:center;">
         <div class="m-lg-3">
@@ -35,12 +36,12 @@
   </div>
 </div>
 
-<%= javascript_tag do %>
-window.addEventListener("load", function() {
-  const firstImage = document.querySelector("#images img");
-  const displayedImage = document.querySelector("#displayed-image");
-  displayedImage.src = firstImage.src;
-});
+<script>
+    $(document).ready(function() {
+      const firstImage = $("#images img:first");
+      const displayedImage = $("#displayed-image");
+      displayedImage.attr("src", firstImage.attr("src"));
+    });
 
 
 
@@ -48,4 +49,4 @@ function displayImage(image) {
   const displayedImage = document.querySelector("#displayed-image");
   displayedImage.src = image.src;
 }
-<% end %>
+</script>

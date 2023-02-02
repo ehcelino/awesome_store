@@ -1,7 +1,8 @@
 <div style="text-align:center; margin: 20px;">
   <h1>Welcome, this is the home page</h1>  
 </div>
-<div style="margin: 0 auto;">  
+<div style="margin: 0 auto;">
+  <%= render partial: "alert" %>  
   <div>
     <section class="products">
       <% @products.each do |product| %>

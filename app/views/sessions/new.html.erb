@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="m-lg-3 p-lg-3 border shadow white-bkg">
+    <%= render partial: "alert" %>
+    <%= form_tag sessions_path do %>
+      <div class="mb-3">
+        <%= label_tag :username, "Usuário", class: "form-label" %>
+        <%= text_field_tag :username, params[:username], class: "form-control" %>
+      </div>
+      <div class="mb-3">
+        <%= label_tag :password, "Senha", class: "form-label" %>
+        <%= password_field_tag :password, nil, class: "form-control" %>
+    </div>
+    <div class="form-check">
+        <%= label_tag :remember_me, "Lembrar-se de mim", class:"form-check-label" %>
+        <%= check_box_tag :remember_me, 1, params[:remember_me], class:"form-check-input" %>
+      </div>
+    </div>
+    <div class="mb-3">
+      <%= submit_tag "Entrar", class: "btn btn-outline-primary mb-3" %>
+    </div>
+  <% end %>
+</div>
