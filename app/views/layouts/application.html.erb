@@ -32,12 +32,7 @@
             <li class="nav-item">
               <%= link_to "Novo produto", new_product_path, class:"nav-link active" %>
             </li>
-            <li class="nav-item">
-              <%= link_to "Login", login_path, class:"nav-link active" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Sign up", signup_path, class:"nav-link active" %>
-            </li>
+            
             
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,12 +48,22 @@
           </ul>
           <div class="d-flex" role="search">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <%= link_to "Sair", logout_path, class:"nav-link active" %>
-              </li>
+              <% if current_user.username == "Visitante" %>
+                <li class="nav-item">
+                  <%= link_to "Login", login_path, class:"nav-link active" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Sign up", signup_path, class:"nav-link active" %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <b class="nav-link active"><i class="bi bi-person-circle"></i> <%= current_user.username %></b>
+                </li>
+                <li class="nav-item">
+                  <b class="nav-link active"> <i class="bi bi-x-circle"></i> <a href="<%= url_for(logout_path) %>" class="black-link">Sair</a></b>
+                </li>
+              <% end %>
             </ul>
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
           </div>
         </div>
       </div>
