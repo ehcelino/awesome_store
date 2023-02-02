@@ -1,15 +1,21 @@
 <div style="text-align:center; margin: 20px;">
-  <h1>Welcome, this is the home page</h1>  
+  <h1 class="greeting">Welcome, this is the home page</h1>  
 </div>
 <div style="margin: 0 auto;">
-  <%= render partial: "alert" %>  
+  <div class="container">
+    <%= render partial: "alert" %>  
+  </div>
   <div>
     <section class="products">
       <% @products.each do |product| %>
         <a href="<%= url_for(product) %>">
           <div id="productCard" class="product-card" onmouseover="this.classList.add('wiggle');" onmouseout="this.classList.remove('wiggle');">
             <div class="product-image">
-              <%= return_img(product.description) %>
+              <% if has_img?(product.description) %>
+                <%= return_img(product.description) %>
+              <% else %>
+                <%= image_tag product.images[0], class:"resize" %>
+              <% end %>
             </div>
             <div class="product-info">
               <h5><%= product.title %></h5>

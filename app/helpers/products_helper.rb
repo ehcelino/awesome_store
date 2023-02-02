@@ -1,5 +1,16 @@
 module ProductsHelper
 
+  def has_img?(product_description)
+    content = rich_text(product_description)
+    img_tags = content.scan(/<img.*?src=["'](.*?)["'].*?>/)
+    if !img_tags[0].nil?
+      return true
+    else
+      return false
+    end
+  end
+
+
   def return_img(product_description)
     content = rich_text(product_description)
     img_tags = content.scan(/<img.*?src=["'](.*?)["'].*?>/)

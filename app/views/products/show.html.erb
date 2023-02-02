@@ -2,22 +2,22 @@
   <div class="row border shadow white-bkg m-lg-3">
     <%= render partial: "alert" %>
     <div class="col-sm-8">
-      <div style="text-align:center;">
+      <div>
         <div class="m-lg-3">
-
-          <div id="display-area">
-            <img id="displayed-image">
-          </div>
-                    <% if @product.images %>
-            <div class="d-inline-flex flex-wrap" id="images">
-              <% @product.images.each do |image| %>
-                <div>
-                  <%= image_tag(image, class:"resize-sml img-cursor", onclick: "displayImage(this);") %>
-                </div>
-              <% end %>
+          <div style="text-align:center;">
+            <div id="display-area">
+              <img id="displayed-image" class="resize-big">
             </div>
-          <% end %>
-
+            <% if @product.images %>
+              <div class="d-inline-flex flex-wrap" id="images">
+                <% @product.images.each do |image| %>
+                  <div>
+                    <%= image_tag(image, class:"resize-sml img-cursor", onclick: "displayImage(this);") %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
           <%= @product.description %>
           
         </div>
