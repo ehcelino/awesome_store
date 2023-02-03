@@ -19,7 +19,6 @@
             <% end %>
           </div>
           <%= @product.description %>
-          
         </div>
       </div>
     </div>
@@ -32,14 +31,16 @@
           </div>
           
           <div style="margin-top:20px;">
-            <%= form_tag product_path(product_id: @product) do %>
+            <%= form_with(url: cart_add_path) do |f| %>
+              <%= f.hidden_field :id, value: @product.id %>
+              <%= f.hidden_field :from, value: 1 %>
               <div class="form-group" style="margin-bottom:10px;">
-                <%= label_tag :quantity, "Quantidade", class: "form-label" %>
+                <%= f.label :quantity, "Quantidade", class: "form-label" %>
                 <button type="button" onclick="decrementNum()" id="decrease_button" class="clean-button">-</button>
-                <%= number_field_tag :quantity, params[:quantity], value: 1, style: "width: 4em;", id: "number_field" %>
+                <%= f.number_field :quantity, value: 1, style: "width: 4em;", id: "number_field" %>
                 <button type="button" onclick="incrementNum()" id="increase_button" class="clean-button">+</button>
               </div>
-              <div class="actions"><%= submit_tag "Comprar", class: "btn btn-primary mb-3" %></div>
+              <div class="actions"><%= f.submit "Comprar", class: "btn btn-primary mb-3" %></div>
             <% end %>
           </div>
 
@@ -76,6 +77,5 @@ function displayImage(image) {
       numberField.value = currentValue - 1;
     }
   };
-
 
 </script>

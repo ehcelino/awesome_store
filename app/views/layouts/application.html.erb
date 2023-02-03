@@ -48,7 +48,7 @@
           </ul>
           <div class="d-flex" role="search">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <% if current_user.username == "Visitante" %>
+              <% if current_user.nil? %>
                 <li class="nav-item">
                   <%= link_to "Login", login_path, class:"nav-link active" %>
                 </li>
@@ -62,12 +62,23 @@
                 <li class="nav-item">
                   <b class="nav-link active"> <i class="bi bi-x-circle"></i> <a href="<%= url_for(logout_path) %>" class="black-link">Sair</a></b>
                 </li>
+
+                <% if !@cart.nil? %>
+                  <%= render partial: "layouts/cart_qtty" %>
+                <% end %>
+
               <% end %>
             </ul>
           </div>
         </div>
       </div>
     </nav>
+
+    <%
+=begin%>
+ <%= render partial: "cart/cart" if @render_cart %> 
+<%
+=end%>
 
     <%= yield %>
 
