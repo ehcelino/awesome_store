@@ -14,4 +14,13 @@ class Cart < ApplicationRecord
     sum
   end
 
+  def update_quantity
+    orderables.each do |ord|
+      product = Product.find_by(id: ord.product_id)
+      new_quantity = product.stock - ord.quantity
+      product.stock = new_quantity
+      product.save
+    end
+  end
+
 end

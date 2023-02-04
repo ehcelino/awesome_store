@@ -29,6 +29,9 @@
           <div class="show-value">
             <%= number_to_currency(@product.value, unit: "R$ ", separator: ",", delimiter: "") %>
           </div>
+          <div>
+          Em estoque: <%= @product.stock %>
+          </div>
           
           <div style="margin-top:20px;">
             <%= form_with(url: cart_add_path) do |f| %>

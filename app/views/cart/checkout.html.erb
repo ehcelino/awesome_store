@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="m-lg-3 p-3 border shadow white-bkg">
+    <div>
+      <%= render partial: "alert" %>
+      <h2><i class="bi bi-bag-dash"></i> Checkout</h2>
+      <% @cart.orderables.each do |orderable| %>
+        <% product = orderable.product %>
+        <div id="<%= "cart-#{product.id}" %>">
+          <div class="row">
+            <div class="col-sm">        
+              <%= product.title %>
+            </div>
+            <div class="col-sm">
+              <%= number_to_currency(product.value, unit: "R$ ", separator: ",", delimiter: "") %>
+            </div>
+          </div>
+        <% end %>
+        <div class="row">
+          <div class="col-sm">
+            Total da compra
+          </div>
+          <div class="col-sm">
+            <%= number_to_currency(@cart.total, unit: "R$ ", separator: ",", delimiter: "") %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            Valor do frete
+          </div>
+          <div class="col-sm">
+            R$ 50,00
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <strong>Total</strong>
+          </div>
+          <div class="col-sm">
+            <strong><%= number_to_currency((@cart.total + 50.0), unit: "R$ ", separator: ",", delimiter: "") %></strong>
+          </div>
+        </div>
+        <div class="row" style="margin-top:20px;">
+          <div class="col-sm">
+            <%= link_to "Finalizar compra", cart_path, class: "btn btn-outline-primary mb-1 btn-sm" %>
+    </div> 
+  </div>
+</div>

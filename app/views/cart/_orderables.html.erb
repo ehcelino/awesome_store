@@ -1,23 +1,38 @@
-<% @cart.orderables.each do |orderable| %>
-  <% product = orderable.product %>
-  <div id="<%= "cart-#{product.id}" %>">
-    <div style="display:flex;justify-content:space-between; margin: 0em 5em;">
-      <%= product.title %>
+<div class="container">
+  <div class="m-lg-3 p-3 border shadow white-bkg">
+    <div>
+      <%= render partial: "alert" %>
+      <h2><i class="bi bi-cart4"></i> Carrinho de compras</h2>
+      <% @cart.orderables.each do |orderable| %>
+        <% product = orderable.product %>
+        <div id="<%= "cart-#{product.id}" %>">
+          <div class="row">
+            <div class="col-sm">        
+              <%= product.title %>
+            </div>
+            <div class="col-sm">
+              <%= number_to_currency(product.value, unit: "R$ ", separator: ",", delimiter: "") %>
+            </div>
+            <div class="col-sm-4">
+              <%= form_with(url: cart_add_path)  do |f| %>
+                <%= f.hidden_field :id, value: product.id %>
+                
+                  <%= f.label :quantity, "Quantidade", class: "form-label" %>
+                  <%= f.number_field :quantity, value: orderable.quantity, style: "width: 4em;" %>
+                <%= f.submit "Alterar", class: "btn btn-outline-primary mb-1 btn-sm" %>
+              <% end %>
+            </div>
 
-      <%= product.value %>
-
-      <%= form_with(url: cart_add_path)  do |f| %>
-        <%= f.hidden_field :id, value: product.id %>
-        
-          <%= f.label :quantity, "Quantidade", class: "form-label" %>
-          <%= f.number_field :quantity, value: orderable.quantity, style: "width: 4em;" %>
-        <%= f.submit "Alterar quantidade", class: "btn btn-primary mb-3" %>
-      <% end %>
-
-      <%= form_with(url: cart_remove_path)  do |f| %>
-        <%= f.hidden_field :id, value: orderable.id %>
-        <div class="actions"><%= f.submit "Remover", class: "btn btn-primary mb-3" %></div>
-      <% end %>
-    </div>
-  <% end %>
-    
+            <div class="col-sm text-center">
+              <%= form_with(url: cart_remove_path)  do |f| %>
+                <%= f.hidden_field :id, value: orderable.id %>
+                <div class="actions"><%= f.submit "Remover", class: "btn btn-outline-primary mb-1 btn-sm" %></div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        <p>Total: <%= number_to_currency(@cart.total, unit: "R$ ", separator: ",", delimiter: "") %></p>
+        <%= link_to "Continuar comprando", root_path, class:"btn btn-outline-primary btn-sm" %>
+    </div>    
+  </div>
+</div>
