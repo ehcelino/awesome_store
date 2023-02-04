@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="m-lg-3 p-lg-3 border shadow white-bkg">
+  <div class="p-3 my-3 border shadow white-bkg mx-auto" style="width:300px;">
     <%= render partial: "alert" %>
     <%= form_tag sessions_path do %>
       <div class="mb-3">
@@ -9,14 +9,14 @@
       <div class="mb-3">
         <%= label_tag :password, "Senha", class: "form-label" %>
         <%= password_field_tag :password, nil, class: "form-control" %>
-    </div>
-    <div class="form-check">
+      </div>
+      <div class="form-check">
         <%= label_tag :remember_me, "Lembrar-se de mim", class:"form-check-label" %>
         <%= check_box_tag :remember_me, 1, params[:remember_me], class:"form-check-input" %>
       </div>
-    </div>
-    <div class="mb-3">
-      <%= submit_tag "Entrar", class: "btn btn-outline-primary mb-3" %>
+      <div class="mb-3" style="margin-top:15px;">
+        <%= submit_tag "Entrar", class: "btn btn-outline-primary mb-3" %>
+      </div>
     </div>
   <% end %>
 </div>

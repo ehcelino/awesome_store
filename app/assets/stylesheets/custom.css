@@ -31,6 +31,10 @@ body {
   justify-content: center;
 }
 
+.sides {
+  margin: 20px 20%;
+}
+
 /* .product-card {
   padding: 2%;
   flex-grow: 1;

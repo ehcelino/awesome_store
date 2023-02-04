@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="m-lg-3 p-lg-3 border shadow white-bkg">
+  <div class="p-3 my-3 border shadow white-bkg mx-auto" style="width:300px;">
     <%= render partial: "alert" %>
-      <h3>Usuário</h3>
+      <h3>Conta</h3>
       <%= form_for user do |f| %>
         <% if user.errors.any? %>
           <div id="notice" class="alert alert-dismissible alert-warning">
@@ -16,7 +16,7 @@
         <% end %>
 
         <div class="mb-3">
-          <%= f.label 'Nome de usuário', class: "form-label" %>
+          <%= f.label 'Usuário', class: "form-label" %>
           <%= f.text_field :username, class: "form-control" %>
         </div>
 

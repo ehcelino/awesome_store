@@ -8,6 +8,9 @@ class CartController < ApplicationController
   def checkout
   end
 
+  def last
+  end
+
   def add
     @product = Product.find_by(id: params[:id])
     quantity = params[:quantity].to_i
@@ -41,6 +44,22 @@ class CartController < ApplicationController
         render turbo_stream: [turbo_stream.replace('cart', partial: 'cart/cart', locals: { cart: @cart }),
         turbo_stream.replace('cart_qtty', partial: 'layouts/cart_qtty', locals: { cart: @cart })]
         
+      end
+    end
+  end
+
+  def final
+    @cart.update_quantity
+    @cart.orderables.each do |ord|
+      ord.destroy
+    end
+    @cart.destroy if @cart.id == session[:cart_id]
+    session[:cart_id] = nil
+
+    respond_to do |format|
+      format.html { redirect_to last_url }
+      format.turbo_stream do
+        render turbo_stream: [turbo_stream.replace('cart_qtty', partial: 'layouts/cart_qtty', locals: { cart: @cart })]
       end
     end
   end
