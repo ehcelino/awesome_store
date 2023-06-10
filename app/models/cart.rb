@@ -3,7 +3,8 @@ class Cart < ApplicationRecord
   has_many :products, through: :orderables
 
   def total
-    orderables.to_a.sum { |orderable| orderable.total }
+    # orderables.to_a.sum { |orderable| orderable.total }
+    orderables.to_a.sum(&:total)
   end
 
   def total_items

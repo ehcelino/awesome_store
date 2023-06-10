@@ -38,8 +38,9 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # process behavior so workers use less memory.
 #
 # preload_app!
-
-bind "tcp://192.168.0.111:3000" if ENV.fetch("RUNNING_ENV") == "home"
+if ENV["RUNNING_ENV"]
+  bind "tcp://192.168.0.117:3000" if ENV.fetch("RUNNING_ENV") == "home"
+end
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
